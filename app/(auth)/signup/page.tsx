@@ -20,7 +20,7 @@ import { z } from 'zod';
 
 import Logo from '../../../public/cypresslogo.svg';
 import Loader from '@/components/global/Loader';
-//import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
+import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { MailCheck } from 'lucide-react';
 import { FormSchema } from '@/lib/types';
 import { actionSignUpUser } from '@/lib/server-actions/auth-actions';
