@@ -16,7 +16,7 @@ export async function actionLoginUser({
   });
   return response;
 }
-
+// making query using supass heere not by drizzle
 export async function actionSignUpUser({
   email,
   password,
@@ -34,6 +34,6 @@ export async function actionSignUpUser({
     options: {
       emailRedirectTo: `${process.env.NEXT_PUBLIC_SITE_URL}api/auth/callback`,
     },
-  });
+   });
   return response;
 }
