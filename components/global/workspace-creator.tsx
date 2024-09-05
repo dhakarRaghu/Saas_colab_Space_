@@ -15,7 +15,9 @@ import {
 import { SelectGroup } from '@radix-ui/react-select';
 import { Lock, Plus, Share } from 'lucide-react';
 import { Button } from '../ui/button';
+
 import { v4 } from 'uuid';
+
 import { addCollaborators, createWorkspace } from '@/lib/supabase/queries';
 import CollaboratorSearch from './collaborator-search';
 import { ScrollArea } from '../ui/scroll-area';

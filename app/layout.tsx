@@ -31,14 +31,14 @@ export default function RootLayout({
           defaultTheme="dark"
           enableSystem
         >
-          {/* <AppStateProvider>
+          <AppStateProvider>
             <SupabaseUserProvider>
-              <SocketProvider> */}
+              <SocketProvider>
                 {children}
-                {/* <Toaster />
+                <Toaster />
               </SocketProvider>
             </SupabaseUserProvider>
-          </AppStateProvider> */}
+          </AppStateProvider>
         </ThemeProvider>
       </body>
     </html>
