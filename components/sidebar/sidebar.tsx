@@ -13,9 +13,9 @@ import { redirect } from 'next/navigation';
 import { twMerge } from 'tailwind-merge';
 import WorkspaceDropdown from './workspace-dropdown';
 import PlanUsage from './plan-usage';
-import NativeNavigation from './native-navigation';
+//import NativeNavigation from './native-navigation';
 import { ScrollArea } from '../ui/scroll-area';
-import FoldersDropdownList from './folders-dropdown-list';
+//import FoldersDropdownList from './folders-dropdown-list';
 import UserCard from './user-card';
 
 interface SidebarProps {
@@ -73,7 +73,7 @@ const Sidebar: React.FC<SidebarProps> = async ({ params, className }) => {
           foldersLength={workspaceFolderData?.length || 0}
           subscription={subscriptionData}
         />
-        <NativeNavigation myWorkspaceId={params.workspaceId} />
+        {/* <NativeNavigation myWorkspaceId={params.workspaceId} /> */}
         <ScrollArea
           className="overflow-scroll relative
           h-[450px]
@@ -90,10 +90,10 @@ const Sidebar: React.FC<SidebarProps> = async ({ params, className }) => {
           to-transparent 
           z-40"
           />
-          <FoldersDropdownList
+          {/* <FoldersDropdownList
             workspaceFolders={workspaceFolderData || []}
             workspaceId={params.workspaceId}
-          />
+          /> */}
         </ScrollArea>
       </div>
       <UserCard subscription={subscriptionData} />
