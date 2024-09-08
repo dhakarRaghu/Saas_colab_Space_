@@ -35,7 +35,7 @@ import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 import EmojiPicker from '../global/emoji-picker';
 import BannerUpload from '../banner-upload/banner-upload';
 import { XCircleIcon } from 'lucide-react';
-import { useSocket } from '@/lib/providers/socket-provider';
+ import { useSocket } from '@/lib/providers/socket-provider';
 import { useSupabaseUser } from '@/lib/providers/supabase-user-provider';
 
 interface QuillEditorProps {
