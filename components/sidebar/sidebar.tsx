@@ -73,7 +73,7 @@ const Sidebar: React.FC<SidebarProps> = async ({ params, className }) => {
           foldersLength={workspaceFolderData?.length || 0}
           subscription={subscriptionData}
         />
-        {/* <NativeNavigation myWorkspaceId={params.workspaceId} /> */}
+        <NativeNavigation myWorkspaceId={params.workspaceId} />
         <ScrollArea
           className="overflow-scroll relative
           h-[450px]
@@ -90,10 +90,10 @@ const Sidebar: React.FC<SidebarProps> = async ({ params, className }) => {
           to-transparent 
           z-40"
           />
-          {/* <FoldersDropdownList
+          <FoldersDropdownList
             workspaceFolders={workspaceFolderData || []}
             workspaceId={params.workspaceId}
-          /> */}
+          />
         </ScrollArea>
       </div>
       <UserCard subscription={subscriptionData} />
