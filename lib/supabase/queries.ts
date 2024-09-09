@@ -212,37 +212,82 @@ export const getFiles = async (folderId: string) => {
   }
 };
 
+// export const addCollaborators = async (users: User[], workspaceId: string) => {
+//   const response = users.forEach(async (user: User) => {
+//     const userExists = await db.query.collaborators.findFirst({
+//       where: (u, { eq }) =>
+//         and(eq(u.userId, user.id), eq(u.workspaceId, workspaceId)),
+//     });
+//     if (!userExists)
+//       await db.insert(collaborators).values({ workspaceId, userId: user.id });
+//   });
+// };
 export const addCollaborators = async (users: User[], workspaceId: string) => {
-  const response = users.forEach(async (user: User) => {
-    const userExists = await db.query.collaborators.findFirst({
-      where: (u, { eq }) =>
-        and(eq(u.userId, user.id), eq(u.workspaceId, workspaceId)),
-    });
-    if (!userExists)
-      await db.insert(collaborators).values({ workspaceId, userId: user.id });
-  });
+  try {
+    await Promise.all(
+      users.map(async (user: User) => {
+        const userExists = await db.query.collaborators.findFirst({
+          where: (u, { eq }) =>
+            and(eq(u.userId, user.id), eq(u.workspaceId, workspaceId)),
+        });
+
+        if (!userExists) {
+          await db.insert(collaborators).values({ workspaceId, userId: user.id });
+        }
+      })
+    );
+  } catch (error) {
+    console.error('Error adding collaborators:', error);
+  }
 };
 
-export const removeCollaborators = async (
-  users: User[],
-  workspaceId: string
-) => {
-  const response = users.forEach(async (user: User) => {
-    const userExists = await db.query.collaborators.findFirst({
-      where: (u, { eq }) =>
-        and(eq(u.userId, user.id), eq(u.workspaceId, workspaceId)),
-    });
-    if (userExists)
-      await db
-        .delete(collaborators)
-        .where(
-          and(
-            eq(collaborators.workspaceId, workspaceId),
-            eq(collaborators.userId, user.id)
-          )
-        );
-  });
+export const removeCollaborators = async (users: User[], workspaceId: string) => {
+  try {
+    await Promise.all(
+      users.map(async (user: User) => {
+        const userExists = await db.query.collaborators.findFirst({
+          where: (u, { eq }) =>
+            and(eq(u.userId, user.id), eq(u.workspaceId, workspaceId)),
+        });
+
+        if (userExists) {
+          await db
+            .delete(collaborators)
+            .where(
+              and(
+                eq(collaborators.workspaceId, workspaceId),
+                eq(collaborators.userId, user.id)
+              )
+            );
+        }
+      })
+    );
+  } catch (error) {
+    console.error('Error removing collaborators:', error);
+  }
 };
+
+
+// export const removeCollaborators = async (
+//   users: User[],
+//   workspaceId: string
+// ) => {
+//   const response = users.forEach(async (user: User) => {
+//     const userExists = await db.query.collaborators.findFirst({
+//       where: (u, { eq }) =>
+//         and(eq(u.userId, user.id), eq(u.workspaceId, workspaceId)),
+//     });
+//     if (userExists)
+//       await db
+//         .delete(collaborators)
+//         .where(
+//           and(
+//             eq(collaborators.workspaceId, workspaceId),
+//             eq(collaborators.userId, user.id)
+//           )
+//         );
+//   });
+// };
 
 export const findUser = async (userId: string) => {
   const response = await db.query.users.findFirst({
